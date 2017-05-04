@@ -1,0 +1,95 @@
+<?php
+error_reporting(E_ALL);
+// if (!define('SAFELOAD')) {
+// 	exit('ACCESS FORBIDDEN');
+// }
+
+class Model {
+	var $server;
+	var $username;
+	var $password;
+	var $database;
+	var $conn;
+
+	function __construct() {
+		$this->server = Config::$SERVER;
+		$this->username = Config::$USER;
+		$this->password = Config::$PASS;
+		$this->database = Config::$DB;
+	}
+
+	function connect(){
+        $this->conn = mysqli_connect($this->server, $this->username, $this->password, $this->database);
+        if (!$this->conn) {
+            echo json_encode(array('code'=>500,'message'=>'DB connection failed.'));
+            die();
+        }
+    }
+
+    function close(){
+        mysqli_close($this->conn);
+    }
+
+    function getBase64($usr, $pass) {
+    	$data = base64_encode($usr . ";;" . $pass);
+    	return $data;
+    }
+
+    function checkUser($usr) {
+    	$sql = "SELECT usr_name FROM usr_cred WHERE usr_name = '$usr'";
+    	$q = mysqli_query($this->conn, $sql);
+        $data = mysqli_fetch_object($q);
+
+        if (count($data) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function login($user, $pass) {
+    	$sql = "SELECT usr_name, usr_pass, usr_salt FROM usr_cred WHERE usr_name = '$user'";
+    	$q = mysqli_query($this->conn, $sql) or die('false');
+    	$result = mysqli_fetch_array($q);
+    	mysqli_free_result($q);
+    	$salt = $result['usr_salt'];
+    	$check = hash('sha256', $pass . $salt);
+    	for ($i =0; $i < 65536; $i++) { 
+    		$check = hash('sha256', $check . $salt);
+    	}
+    	$status = false;
+    	if ($check == $result['usr_pass']) {
+            $token = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
+    		$sqlAdd = "UPDATE usr_cred SET usr_token = '$token' WHERE usr_name = '$user'";
+            $qAdd = mysqli_query($this->conn, $sqlAdd) or die('false');
+            if ($qAdd) {
+                $status = $token;
+            }
+    	}
+    	return $status;
+    }
+
+    function createUser($data, $token) {
+    	$data = explode(",", base64_decode($data));
+    	$salt = dechex(mt_rand(0, 2147483647)) . dechex(mt_rand(0, 2147483647));
+        $password = hash('sha256', $data[1] . $salt);
+        for($i = 0; $i < 65536; $i++) {
+            $password = hash('sha256', $password . $salt);
+        }
+        $sql = "INSERT INTO usr_cred (usr_name, usr_pass, usr_salt) VALUES ('$data[0]', '$password', '$salt')";
+        $q = mysqli_query($this->conn, $sql) or die('false');
+        $status = false;
+        if ($q) {
+        	$status = true;
+        }
+        return $status;
+    }
+
+    function getJob() {
+        $sql = "SELECT * FROM career_job";
+        $q = mysqli_query($this->conn, $sql);
+        $result = mysqli_fetch_all($q,MYSQLI_ASSOC);
+
+        return $result;
+    }
+}
