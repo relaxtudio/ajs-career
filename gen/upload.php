@@ -10,7 +10,7 @@ $ktp = $_POST['ktp'];
 $phone = $_POST['phone'];
 $email = $_POST['email'];
 $job = $_POST['job'];
-$path = '../ws/content/';
+$path = '../adm/content/';
 $tmp = $ktp . "." . $ext;
 if (move_uploaded_file($_FILES['file']['tmp_name'], $path.basename($tmp))) {
 	// echo "<div>Uploaded $data</div>";

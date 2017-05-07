@@ -114,7 +114,14 @@ class Model {
     }
 
     function getRegistree() {
-        $sql = "SELECT * FROM career_schema cs
+        $sql = "SELECT career_name AS name,
+                        career_address AS address,
+                        career_ktp AS ktp,
+                        career_telp AS phone,
+                        career_email AS email,
+                        job_name AS job,
+                        career_file AS file
+                FROM career_schema cs
                 JOIN career_job cj ON cj.job_id = cs.job_id
                 ORDER BY cj.job_name,cs.career_id";
         $q = mysqli_query($this->conn, $sql);

@@ -105,6 +105,7 @@ angular.module('adm-controller', ['textAngular'])
 		$scope.getRegistree = function () {
 			$ws.getRegistree(function (respon) {
 				$scope.registree = respon.data[0].getRegistree;
+				console.log($scope.registree);
 			}, $scope.$parent.errorWs);
 		};
 		$scope.init();

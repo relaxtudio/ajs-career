@@ -23,8 +23,30 @@
 	<div class="section">
 		<div class="section-title">Registree</div>
 		<div ng-repeat="value in registree" class="list">
-			<div ng-click="detail = !detail">{{value.career_name}}</div>
-			<div ng-show="detail">{{value.career_address}}</div>
+			<div ng-click="detail = !detail">
+				<span>{{value.name}}</span>
+				<span>{{value.ktp}}</span>
+				<span>{{value.job}}</span>
+			</div>
+			<div ng-show="detail">
+				<div>
+					<span>Alamat</span>
+					<span>{{value.address}}</span>
+				</div>
+				<div>
+					<span>No. Telp</span>
+					<span>{{value.phone}}</span>
+				</div>
+				<div>
+					<span>Email</span>
+					<span>{{value.email}}</span>
+				</div>
+				<div>
+					<span>File</span>
+					<span>{{value.file}}</span>
+					<a href="http://localhost/ajs-career/adm/content/{{value.file}}">Download</a>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
