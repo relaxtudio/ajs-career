@@ -1,0 +1,30 @@
+<div>
+	<div class="section">
+		<div class="section-title">Job</div>
+		<div>
+			<button>Tambah</button>
+		</div>
+		<div ng-repeat="job in job.new" class="list">
+			<div ng-show="job.job_id">
+				<div ng-click="jobDetail = !jobDetail">
+					<span ng-show="!editJob">{{job.job_name}}</span>
+					<input ng-show="editJob" ng-model="job.job_name">
+				</div>
+				<button ng-click="editJob = true" ng-show="!editJob">EDIT</button>
+				<button ng-click="updateJob(job.job_id)" ng-show="editJob">UPDATE</button>
+				<button ng-click="editJob = false" ng-show="editJob">CANCEL</button>
+			</div>
+			<div ng-show="jobDetail">
+				<div ng-show="!editJob" ng-bind-html="job.job_req"></div>
+				<div text-angular ng-model="job.job_req" ng-show="editJob"></div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-title">Registree</div>
+		<div ng-repeat="value in registree" class="list">
+			<div ng-click="detail = !detail">{{value.career_name}}</div>
+			<div ng-show="detail">{{value.career_address}}</div>
+		</div>
+	</div>
+</div>

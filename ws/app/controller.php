@@ -33,9 +33,37 @@ function createUser($data = NULL, $token = NULL) {
 	$model->close();
 }
 
+function getConfig() {
+	$model = new Model;
+	$model->connect();
+	return $model->getConfig();
+	$model->close();
+}
+
+function updateConfig() {
+	$model = new Model;
+	$model->connect();
+	return $model->updateConfig();
+	$model->close();
+}
+
+function getRegistree() {
+	$model = new Model;
+	$model->connect();
+	return $model->getRegistree();
+	$model->close();
+}
+
 function getJob() {
 	$model = new Model;
 	$model->connect();
 	return $model->getJob();
+	$model->close();
+}
+
+function updateJob() {
+	$model = new Model;
+	$model->connect();
+	return $model->updateJob();
 	$model->close();
 }

@@ -1,0 +1,8 @@
+<div class="app-container">
+	<div class="side-menu">
+		<div class="menu-list" ng-click="goTo('admin')">Administration</div>
+		<div class="menu-list" ng-click="goTo('main')">Job and Registree List</div>
+		<div class="menu-list" ng-click="logout()">LOGOUT</div>
+	</div>
+	<div ui-view="content" class="content"></div>
+</div>

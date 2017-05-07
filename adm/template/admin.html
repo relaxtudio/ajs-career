@@ -1,0 +1,28 @@
+<div>
+	<div class="section">
+		<div class="section-title">Shown Date</div>
+		<div>
+			<span>Min Date</span>
+			<input ng-model="config.min_date" type="date">
+		</div>
+		<div>
+			<span>Max Date</span>
+			<input ng-model="config.max_date" type="date">
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-title">Text</div>
+		<div>
+			<div text-angular ng-model="config.text"></div>
+		</div>
+		<div>
+			<span>Manual Show Toggle</span>
+
+		</div>
+	</div>
+	<div class="section">
+		<div class="section-title">
+			<button ng-click="save()">SAVE</button>
+		</div>
+	</div>
+</div>

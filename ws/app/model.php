@@ -85,11 +85,66 @@ class Model {
         return $status;
     }
 
+    function getConfig() {
+        $sql = "SELECT * FROM career_config";
+        $q = mysqli_query($this->conn, $sql);
+        $result = mysqli_fetch_all($q,MYSQLI_ASSOC);
+
+        return $result;
+    }
+
+    function updateConfig() {
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $text = $request->text;
+        $min_date = $request->min_date;
+        $max_date = $request->max_date;
+        $toggle = $request->toggle;
+        $sql = "UPDATE career_config 
+                SET text='$text', min_date='$min_date',
+                    max_date='$max_date', toggle='$toggle'
+                WHERE idx=0";
+        $q = mysqli_query($this->conn, $sql);
+        $status = false;
+        if ($q) {
+            $status = true;
+        }
+
+        return $status;
+    }
+
+    function getRegistree() {
+        $sql = "SELECT * FROM career_schema cs
+                JOIN career_job cj ON cj.job_id = cs.job_id
+                ORDER BY cj.job_name,cs.career_id";
+        $q = mysqli_query($this->conn, $sql);
+        $result = mysqli_fetch_all($q,MYSQLI_ASSOC);
+
+        return $result;
+    }
+
     function getJob() {
         $sql = "SELECT * FROM career_job";
         $q = mysqli_query($this->conn, $sql);
         $result = mysqli_fetch_all($q,MYSQLI_ASSOC);
 
         return $result;
+    }
+
+    function updateJob() {
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $id = $request->job_id;
+        $name = $request->job_name;
+        $req = $request->job_req;
+        $sql = "UPDATE career_job SET job_name='$name', job_req='$req'
+                WHERE job_id='$id'";
+        $q = mysqli_query($this->conn, $sql);
+        $status = false;
+        if ($q) {
+            $status = true;
+        }
+
+        return $status;
     }
 }
