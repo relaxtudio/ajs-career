@@ -29,8 +29,7 @@
 					requirement.append(req);
 				});
 			} else {
-				$('#upload').html('');
-				$('#requirement').html('');
+				return $('#uploadForm').html('');
 			}
 		});
 		$("#upload").validate();
@@ -54,7 +53,7 @@
 	<div id="info"></div>
 	<div id="log"></div>
 	<div id="requirement"></div>
-	<div id="upload">
+	<div id="uploadForm">
 		<form method="POST" action="gen/upload.php" enctype="multipart/form-data" id="upload">
 			<div>
 				<div>Nama</div>

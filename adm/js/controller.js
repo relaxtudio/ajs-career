@@ -34,7 +34,6 @@ angular.module('adm-controller', ['textAngular'])
 			var user = $scope.user;
 			if (form.$valid) {
 				$ws.login(user, function (respon) {
-					console.log(respon);
 					$state.transitionTo('app.admin');
 				}, error);
 			}
@@ -55,7 +54,6 @@ angular.module('adm-controller', ['textAngular'])
 				$scope.config = respon.data[0].getConfig[0];
 				$scope.config.min_date = new Date($scope.config.min_date);
 				$scope.config.max_date = new Date($scope.config.max_date);
-				console.log($scope.config);
 			}, $scope.$parent.errorWs);
 		};
 		$scope.save = function () {
@@ -66,7 +64,7 @@ angular.module('adm-controller', ['textAngular'])
 				toggle: $scope.config.toggle
 			};
 			$ws.updateConfig(data, function (respon) {
-				console.log(respon);
+				//
 			}, $scope.$parent.errorWs);
 		};
 		$scope.init();
@@ -92,12 +90,11 @@ angular.module('adm-controller', ['textAngular'])
 			}, $scope.$parent.errorWs);
 		};
 		$scope.updateJob = function (val) {
-			console.log('update');
 			for (i in $scope.job.new) {
 				if ($scope.job.new[i].job_id == val) {
 					var data = $scope.job.new[i];
 					$ws.updateJob(data, function (respon) {
-						console.log(respon);
+						//
 					}, $scope.$parent.errorWs);
 				}
 			}
@@ -105,7 +102,6 @@ angular.module('adm-controller', ['textAngular'])
 		$scope.getRegistree = function () {
 			$ws.getRegistree(function (respon) {
 				$scope.registree = respon.data[0].getRegistree;
-				console.log($scope.registree);
 			}, $scope.$parent.errorWs);
 		};
 		$scope.init();
