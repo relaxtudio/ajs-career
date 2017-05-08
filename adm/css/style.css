@@ -70,5 +70,14 @@ body {
 }
 
 .ta-scroll-window.form-control {
-margin-top: 10px;
+	margin-top: 10px;
+}
+
+.login-panel {
+	position: absolute;
+	top: calc(50% - 200px);
+	left: calc(50% - 145px);
+	height: auto;
+	width: auto;
+	max-width: 290px;
 }
