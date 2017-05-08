@@ -1,31 +1,36 @@
-<div>
+<div class="row">
+	<div class="col-md-6">
 	<div class="section">
-		<div class="section-title">Job</div>
+		<div class="section-title"><i class="fa fa-file"></i> Job</div>
 		<div>
-			<button>Tambah</button>
+			<button class="btn btn-primary">TAMBAH JOB</button>
 		</div>
 		<div ng-repeat="job in job.new" class="list">
 			<div ng-show="job.job_id">
-				<div ng-click="jobDetail = !jobDetail">
-					<span ng-show="!editJob">{{job.job_name}}</span>
-					<input ng-show="editJob" ng-model="job.job_name">
+				<div>
+					<span ng-show="!editJob"><b>Job Position: {{job.job_name}}</b></span>
+					<input ng-show="editJob" ng-model="job.job_name" style="margin-bottom: 5px;">
 				</div>
-				<button ng-click="editJob = true" ng-show="!editJob">EDIT</button>
-				<button ng-click="updateJob(job.job_id)" ng-show="editJob">UPDATE</button>
-				<button ng-click="editJob = false" ng-show="editJob">CANCEL</button>
+				<button class="btn btn-success" ng-click="jobDetail = !jobDetail">DETAIL</button>
+				<button class="btn btn-info" ng-click="editJob = true" ng-show="!editJob">EDIT</button>
+				<button class="btn btn-danger">DELETE</button>
+				<button class="btn btn-primary" ng-click="updateJob(job.job_id)" ng-show="editJob">UPDATE</button>
+				<button class="btn btn-warning" ng-click="editJob = false" ng-show="editJob">CANCEL</button>
 			</div>
-			<div ng-show="jobDetail">
+			<div ng-show="jobDetail" style="margin-top: 10px;">
 				<div ng-show="!editJob" ng-bind-html="job.job_req"></div>
 				<div text-angular ng-model="job.job_req" ng-show="editJob"></div>
 			</div>
 		</div>
 	</div>
+	</div>
+	<div class="col-md-6">
 	<div class="section">
-		<div class="section-title">Registree</div>
+		<div class="section-title"><i class="fa fa-user"></i> Registree</div>
 		<div ng-repeat="value in registree" class="list">
 			<div ng-click="detail = !detail">
-				<span>{{value.name}}</span>
-				<span>{{value.ktp}}</span>
+				<span>{{value.name}} - </span>
+				<span>{{value.ktp}} - </span>
 				<span>{{value.job}}</span>
 			</div>
 			<div ng-show="detail">
@@ -48,5 +53,6 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </div>

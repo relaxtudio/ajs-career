@@ -1,8 +1,11 @@
 <div class="app-container">
+	<div class="banner">
+		<img src="css/logo-flat-text.png">
+	</div>
 	<div class="side-menu">
-		<div class="menu-list" ng-click="goTo('admin')">Administration</div>
-		<div class="menu-list" ng-click="goTo('main')">Job and Registree List</div>
-		<div class="menu-list" ng-click="logout()">LOGOUT</div>
+		<div class="menu-list" ng-click="goTo('admin')"><b>Career Content</b> <i class="fa fa-home fa-lg" style="float: right; margin-top: 4px;"></i></div>
+		<div class="menu-list" ng-click="goTo('main')"><b>Job and Registree List</b> <i class="fa fa-list fa-lg" style="float: right; margin-top: 4px;"></i></div>
+		<div class="menu-list" ng-click="logout()"><b>Logout</b> <i class="fa fa-power-off fa-lg" style="float: right; margin-top: 4px;"></i></div>
 	</div>
 	<div ui-view="content" class="content"></div>
 </div>
