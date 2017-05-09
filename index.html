@@ -2,6 +2,13 @@
 <html>
 <head>
 	<title>Career AJS-Voltabio</title>
+	<meta name="viewport" width="device-width">
+	<!--css-->
+	<link rel="stylesheet" href="adm/css/style.css">
+	<link rel="stylesheet" href="adm/bower_components/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="adm/bower_components/font-awesome/css/font-awesome.css">
+	
+	<!--script-->
 	<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
 	<script type="text/javascript" src="bower_components/jquery-form/dist/jquery.form.min.js"></script>
 	<script type="text/javascript" src="bower_components/jquery-validation/dist/jquery.validate.js"></script>
@@ -23,7 +30,7 @@
 					var req = '';
 					for (i in value) {
 						options += "<option value='" + value[i].job_id + "'>" + value[i].job_name + "</option>"
-						req += "<div><div>" + value[i].job_name + "</div>" + value[i].job_req + "</div>";
+						req += "<div class='panel panel-default'><div class='panel-header'><legend>&nbsp;&nbsp;" + value[i].job_name + "</legend></div><div style='margin-left: 12px;'>" + value[i].job_req + "</div></div>";
 					}
 					select.append(options);
 					requirement.append(req);
@@ -50,41 +57,67 @@
 	</script>
 </head>
 <body>
-	<div id="info"></div>
-	<div id="log"></div>
-	<div id="requirement"></div>
-	<div id="uploadForm">
-		<form method="POST" action="gen/upload.php" enctype="multipart/form-data" id="upload">
-			<div>
-				<div>Nama</div>
-				<input type="text" name="name" required>
-			</div>
-			<div>
-				<div>Alamat</div>
-				<input type="text" name="address" required>
-			</div>
-			<div>
-				<div>No KTP</div>
-				<input type="text" name="ktp" required>
-			</div>
-			<div>
-				<div>Telephone</div>
-				<input type="text" name="phone" required>
-			</div>
-			<div>
-				<div>Email</div>
-				<input type="text" name="email" required>
-			</div>
-			<div>
-				<div>Posisi</div>
-				<select name="job" required></select>
-			</div>
-			<div>
-				<div>Upload Berkas</div>
-				<input type="file" name="file" required>
-			</div>
-			<button type="submit">SUBMIT</button>
-		</form>
+
+<div class="container">
+	<div class="banner">
+		<img src="adm/css/logo-flat-text.png"><span style="margin-left: 20px; cursor: default;"><b>OFFICIAL CAREER SITE</b></span>
 	</div>
+	<div class="panel panel-default">
+		<div id="info" style="padding: 10px;"></div>
+	</div>
+	<div id="log"></div>
+	<div class="row">
+	<div class="grid req-content">	
+		<div id="requirement"></div>
+	</div>
+	<div class="grid app-form">
+	<div class="panel panel-default">
+	<div class="panel-header"><legend align="center">Application Form</legend></div>
+	<div class="panel-body">
+		<div id="uploadForm">
+			<form method="POST" action="gen/upload.php" enctype="multipart/form-data" id="upload">
+				<div class="form-group">
+					<label class="app-label">Name</label>
+					<input class="app-input" type="text" name="name" required>
+				</div>
+				<div class="form-group">
+					<label class="app-label">Address</label>
+					<textarea class="app-input" type="text" name="address" required style="max-width:200px; max-height:100px; vertical-align:top;"></textarea>
+				</div>
+				<div class="form-group">
+					<label class="app-label">KTP Number</label>
+					<input class="app-input" type="number" name="ktp" required>
+				</div>
+				<div class="form-group">
+					<label class="app-label">Telephone</label>
+					<input class="app-input" type="number" name="phone" required>
+				</div>
+				<div class="form-group">
+					<label class="app-label">Email</label>
+					<input class="app-input" type="text" name="email" required>
+				</div>
+				<div class="form-group">
+					<label class="app-label">Position</label>
+					<select class="select-job" name="job" required></select>
+				</div>
+				<div class="form-group">
+					<label class="app-label">Attach Document</label>
+					<input type="file" name="file" style="border: 1px solid black; padding: 2px; display: inline-block;" required>
+				</div>
+				<div class="form-group">
+					<label class="app-label"></label>
+					<p style="display: inline-block; color: red">Format file .pdf & max size 1mb</p>
+				</div>
+				<div class="form-group">
+					<label class="app-label"></label>
+					<button class="btn btn-primary" type="submit"><i class="fa fa-upload"></i> <b>SUBMIT</b></button>
+				</div>
+			</form>
+		</div>
+	</div>
+	</div>
+	</div>
+	</div>
+</div>
 </body>
 </html>

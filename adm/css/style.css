@@ -17,6 +17,8 @@ body {
 .banner {
 	width: 100p%;
 	height: 50px;
+	border-bottom: 3px solid #0762D3;
+	margin-bottom: 5px;
 }
 
 .side-menu {
@@ -79,5 +81,74 @@ body {
 	left: calc(50% - 145px);
 	height: auto;
 	width: auto;
-	max-width: 290px;
+	min-width: 290px;
+}
+
+.select-job {
+	height: 30px;
+	width: 200px;
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid black;
+}
+
+.user-lgn, .pass-lgn {
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid black;
+	width: auto;
+}
+
+.app-input {
+	border: 0;
+	outline: 0;
+	background: transparent;
+	border-bottom: 1px solid black;
+	width: 200px;
+}
+
+.grid {
+	float: left;
+}
+
+.app-label {
+	width: 110px;
+}
+
+.req-content {
+		width: 700px;
+		margin-left: 15px;
+}
+
+.app-form {
+		width: 430px;
+		margin-left: 10px;
+}
+/*hide arrow on input type number*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+@media screen and (max-width: 980px){
+	.app-label {
+		width: 80px;
+	}
+	
+	.req-content {
+		width: 340px;
+		margin-left: 15px;
+	}
+
+	.app-form {
+		width: 370px;
+		margin-left: 10px;
+	}
+	input[name="file"] {
+		width: 250px;
+	}
 }

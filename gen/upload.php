@@ -3,7 +3,8 @@ include 'db.php';
 
 $data = json_encode($_POST);
 $file = $_FILES["file"]["name"];
-$ext = end((explode(".", $file)));
+$tmp = explode(".", $file);
+$ext = end($tmp);
 $nama = $_POST['name'];
 $alamat = $_POST['address'];
 $ktp = $_POST['ktp'];
