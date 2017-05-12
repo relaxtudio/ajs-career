@@ -61,9 +61,23 @@ function getJob() {
 	$model->close();
 }
 
+function addJob() {
+	$model = new Model;
+	$model->connect();
+	return $model->addJob();
+	$model->close();
+}
+
 function updateJob() {
 	$model = new Model;
 	$model->connect();
 	return $model->updateJob();
+	$model->close();
+}
+
+function deleteJob() {
+	$model = new Model;
+	$model->connect();
+	return $model->deleteJob();
 	$model->close();
 }

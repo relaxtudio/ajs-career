@@ -3,9 +3,20 @@
 	<div class="section">
 		<div class="section-title"><i class="fa fa-file"></i> Job</div>
 		<div>
-			<button class="btn btn-primary">TAMBAH JOB</button>
+			<button class="btn btn-primary" ng-click="showJob = false">TAMBAH JOB</button>
 		</div>
-		<div ng-repeat="job in job.new" class="list">
+		<div class="list" ng-show="!showJob">
+			<div>
+				<span>Nama Job</span>
+				<input ng-model="newJob.job_name">
+				<div text-angular ng-model="newJob.job_req"></div>
+			</div>
+			<div>
+				<button ng-click="addJob()">SAVE</button>
+				<button ng-click="cancelJob()">CANCEL</button>
+			</div>
+		</div>
+		<div ng-repeat="job in job.new" class="list" ng-show="showJob">
 			<div ng-show="job.job_id">
 				<div>
 					<span ng-show="!editJob"><b>Job Position: {{job.job_name}}</b></span>
@@ -13,8 +24,8 @@
 				</div>
 				<button class="btn btn-success" ng-click="jobDetail = !jobDetail">DETAIL</button>
 				<button class="btn btn-info" ng-click="editJob = true" ng-show="!editJob">EDIT</button>
-				<button class="btn btn-danger">DELETE</button>
-				<button class="btn btn-primary" ng-click="updateJob(job.job_id)" ng-show="editJob">UPDATE</button>
+				<button class="btn btn-danger" ng-click="deleteJob(this)">DELETE</button>
+				<button class="btn btn-primary" ng-click="updateJob(job.job_id); editJob = false" ng-show="editJob">UPDATE</button>
 				<button class="btn btn-warning" ng-click="editJob = false" ng-show="editJob">CANCEL</button>
 			</div>
 			<div ng-show="jobDetail" style="margin-top: 10px;">

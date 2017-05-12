@@ -67,6 +67,9 @@ angular.module('adm-controller', ['textAngular'])
 				//
 			}, $scope.$parent.errorWs);
 		};
+		$scope.test = function () {
+			console.log($scope.config);
+		}
 		$scope.init();
 	})
 
@@ -77,6 +80,8 @@ angular.module('adm-controller', ['textAngular'])
 				old: [],
 				new: []
 			};
+			$scope.showJob = true;
+			$scope.newJob = {};
 			$scope.initWs();
 		};
 		$scope.initWs = function () {
@@ -89,6 +94,16 @@ angular.module('adm-controller', ['textAngular'])
 				$scope.job.new = respon.data[0].getJob;
 			}, $scope.$parent.errorWs);
 		};
+		$scope.addJob = function () {
+			$ws.addJob($scope.newJob, function (respon) {
+				console.log(respon);
+				$scope.initWs();
+				$scope.showJob = true;
+			}, $scope.$parent.errorWs);
+		};
+		$scope.cancelJob = function () {
+			$scope.showJob = true;
+		};
 		$scope.updateJob = function (val) {
 			for (i in $scope.job.new) {
 				if ($scope.job.new[i].job_id == val) {
@@ -98,6 +113,11 @@ angular.module('adm-controller', ['textAngular'])
 					}, $scope.$parent.errorWs);
 				}
 			}
+		};
+		$scope.deleteJob = function (data) {
+			$ws.deleteJob(data, function (respon) {
+				$scope.initWs();
+			}, $scope.$parent.errorWs);
 		};
 		$scope.getRegistree = function () {
 			$ws.getRegistree(function (respon) {

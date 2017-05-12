@@ -74,8 +74,14 @@ angular.module('adm-service', [])
             getJob: function(success, error) {
                 return $http.post(C_WS + 'getJob').then(success, error);
             },
+            addJob: function(data, success, error) {
+                return $http.post(C_WS + 'addJob', data).then(success, error);
+            },
             updateJob: function(data, success, error) {
                 return $http.post(C_WS + 'updateJob', data).then(success, error);
+            },
+            deleteJob: function(data, success, error) {
+                return $http.post(C_WS + 'deleteJob', data.job).then(success, error);
             },
             getRegistree: function(success, error) {
                 return $http.post(C_WS + 'getRegistree').then(success, error);

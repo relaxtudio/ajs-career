@@ -101,7 +101,7 @@ class Model {
         $max_date = $request->max_date;
         $toggle = $request->toggle;
         $sql = "UPDATE career_config 
-                SET text='$text', min_date='$min_date',
+                SET text=$text, min_date='$min_date',
                     max_date='$max_date', toggle='$toggle'
                 WHERE idx=0";
         $q = mysqli_query($this->conn, $sql);
@@ -138,6 +138,21 @@ class Model {
         return $result;
     }
 
+    function addJob() {
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $name = $request->job_name;
+        $req = $request->job_req;
+        $sql = "INSERT INTO career_job (job_name, job_req) VALUES ('$name', '$req')";
+        $q = mysqli_query($this->conn, $sql);
+        $status = false;
+        if ($q) {
+            $status = true;
+        }
+
+        return $status;
+    }
+
     function updateJob() {
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
@@ -146,6 +161,20 @@ class Model {
         $req = $request->job_req;
         $sql = "UPDATE career_job SET job_name='$name', job_req='$req'
                 WHERE job_id='$id'";
+        $q = mysqli_query($this->conn, $sql);
+        $status = false;
+        if ($q) {
+            $status = true;
+        }
+
+        return $status;
+    }
+
+    function deleteJob() {
+        $postdata = file_get_contents("php://input");
+        $request = json_decode($postdata);
+        $id = $request->job_id;
+        $sql = "DELETE FROM career_job WHERE job_id='$id'";
         $q = mysqli_query($this->conn, $sql);
         $status = false;
         if ($q) {
