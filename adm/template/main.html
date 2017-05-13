@@ -11,9 +11,9 @@
 				<input ng-model="newJob.job_name">
 				<div text-angular ng-model="newJob.job_req"></div>
 			</div>
-			<div>
-				<button ng-click="addJob()">SAVE</button>
-				<button ng-click="cancelJob()">CANCEL</button>
+			<div style="margin-top:10px;">
+				<button class="btn btn-success" ng-click="addJob()" style="width: 100px;">SAVE</button>
+				<button class="btn btn-warning" ng-click="cancelJob()" style="width: 100px;">CANCEL</button>
 			</div>
 		</div>
 		<div ng-repeat="job in job.new" class="list" ng-show="showJob">
@@ -45,29 +45,30 @@
 			</select>
 		</div>
 		<div ng-repeat="value in registree.shown | filter:'' | startFrom:currentPage*pageSize | limitTo:pageSize" class="list">
-			<div ng-click="detail = !detail">
+			<div ng-click="detail = !detail" style="cursor: pointer;"><b>
 				<span>{{value.name}} - </span>
 				<span>{{value.ktp}} - </span>
-				<span>{{value.job}}</span>
+				<span>{{value.job}}</span></b>
 			</div>
 			<div ng-show="detail">
-				<div>
-					<span>Alamat</span>
-					<span>{{value.address}}</span>
-				</div>
-				<div>
-					<span>No. Telp</span>
-					<span>{{value.phone}}</span>
-				</div>
-				<div>
-					<span>Email</span>
-					<span>{{value.email}}</span>
-				</div>
-				<div>
-					<span>File</span>
-					<span>{{value.file}}</span>
-					<a href="http://localhost/ajs-career/adm/content/{{value.file}}">Download</a>
-				</div>
+				<table width="100%">
+				<tr>
+					<td>Alamat</td>
+					<td>: {{value.address}}</td>
+				</tr>
+				<tr>
+					<td>No. Telp</td>
+					<td>: {{value.phone}}</td>
+				</tr>
+				<tr>
+					<td>Email</td>
+					<td>: {{value.email}}</td>
+				</tr>
+				<tr>
+					<td valign="top">File</td>
+					<td>: {{value.file}} <a class="btn btn-primary" target="_blank" href="http://localhost/ajs-career/adm/content/{{value.file}}" style="float: right;">Download</a></td>
+				</tr>
+				</table>
 			</div>
 		</div>
 		<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">

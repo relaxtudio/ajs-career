@@ -156,7 +156,7 @@ class Model {
     function updateJob() {
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata);
-        $id = $request->job_id;
+		$id = $request->job_id;
         $name = $request->job_name;
         $req = $request->job_req;
         $sql = "UPDATE career_job SET job_name='$name', job_req='$req'
@@ -175,8 +175,8 @@ class Model {
         $request = json_decode($postdata);
         $id = $request->job_id;
         $sql = "DELETE FROM career_job WHERE job_id='$id'";
-        $q = mysqli_query($this->conn, $sql);
-        $status = false;
+		$q = mysqli_query($this->conn, $sql);
+		$status = false;
         if ($q) {
             $status = true;
         }
