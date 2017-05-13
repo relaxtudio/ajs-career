@@ -108,6 +108,7 @@ angular.module('adm-controller', ['textAngular'])
 				console.log(respon);
 				$scope.initWs();
 				$scope.showJob = true;
+				alert("Job berhasil disimpan");
 			}, $scope.$parent.errorWs);
 		};
 		$scope.cancelJob = function () {

@@ -7,8 +7,10 @@
 		</div>
 		<div class="list" ng-show="!showJob">
 			<div>
-				<span>Nama Job</span>
-				<input ng-model="newJob.job_name">
+				<div class="form-group">
+					<span>Job Name:</span>
+					<input class="form-control" ng-model="newJob.job_name" style="display: inline-block; width: 200px;">
+				</div>
 				<div text-angular ng-model="newJob.job_req"></div>
 			</div>
 			<div style="margin-top:10px;">
@@ -39,7 +41,7 @@
 	<div class="section">
 		<div class="section-title"><i class="fa fa-user"></i> Registree</div>
 		<div>
-			<label>Filter By Job</label>
+			<label>Filter By Job: </label>
 			<select class="form-control" ng-model="filterRegistree.id" ng-change="orderRegistree(filterRegistree.id)" style="width: 200px; display: inline-block;">
 				<option value="">ALL</option>
 				<option ng-repeat="job in job.new" value="{{job.job_name}}">{{job.job_name}}</option>
