@@ -58,7 +58,7 @@ angular.module('adm-controller', ['textAngular'])
 		};
 		$scope.save = function () {
 			var data = {
-				text: $scope.config.text,
+				text: $scope.config.text.replace("'", "&#39;"),
 				min_date: $scope.$parent.formatDate($scope.config.min_date),
 				max_date: $scope.$parent.formatDate($scope.config.max_date),
 				toggle: $scope.config.toggle
@@ -69,25 +69,34 @@ angular.module('adm-controller', ['textAngular'])
 		};
 		$scope.test = function () {
 			console.log($scope.config);
-		}
+		};
 		$scope.init();
 	})
 
 	.controller('MainCtrl', function($scope, $ws) {
 		$scope.init = function () {
-			$scope.registree = [];
+			$scope.registree = {
+				data: [],
+				shown: []
+			};
 			$scope.job = {
 				old: [],
 				new: []
 			};
 			$scope.showJob = true;
+			$scope.currentPage = 0;
+			$scope.pageSize = 10;
 			$scope.newJob = {};
+			$scope.filterRegistree = {id: ''};
 			$scope.initWs();
 		};
 		$scope.initWs = function () {
 			$scope.getJob();
 			$scope.getRegistree();
 		};
+		$scope.numberOfPages = function(){
+	        return Math.ceil($scope.registree.shown.length/$scope.pageSize);
+	    };
 		$scope.getJob = function () {
 			$ws.getJob(function (respon) {
 				$scope.job.old = respon.data[0].getJob;
@@ -121,8 +130,22 @@ angular.module('adm-controller', ['textAngular'])
 		};
 		$scope.getRegistree = function () {
 			$ws.getRegistree(function (respon) {
-				$scope.registree = respon.data[0].getRegistree;
+				$scope.registree.data = respon.data[0].getRegistree;
+				console.log($scope.registree.data)
+				$scope.orderRegistree();
 			}, $scope.$parent.errorWs);
+		};
+		$scope.orderRegistree = function (val) {
+			$scope.registree.shown = [];
+			if (val) {
+				for (i in $scope.registree.data) {
+					if ($scope.registree.data[i].job == val) {
+						$scope.registree.shown.push($scope.registree.data[i]);
+					}
+				}
+			} else {
+				$scope.registree.shown = $scope.registree.data;
+			}
 		};
 		$scope.init();
 	})

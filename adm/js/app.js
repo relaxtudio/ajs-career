@@ -49,3 +49,10 @@ angular.module('adm', ['adm-config', 'adm-controller', 'adm-service', 'ui.router
 			})
 		$urlRouterProvider.otherwise('/app/admin');
 	})
+
+.filter('startFrom', function() {
+    return function(input, start) {
+        start = +start; //parse to int
+        return input.slice(start);
+    }
+})

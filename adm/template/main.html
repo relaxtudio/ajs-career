@@ -38,7 +38,13 @@
 	<div class="col-md-6">
 	<div class="section">
 		<div class="section-title"><i class="fa fa-user"></i> Registree</div>
-		<div ng-repeat="value in registree" class="list">
+		<div>
+			<select ng-model="filterRegistree.id" ng-change="orderRegistree(filterRegistree.id)">
+				<option value="">ALL</option>
+				<option ng-repeat="job in job.new" value="{{job.job_name}}">{{job.job_name}}</option>
+			</select>
+		</div>
+		<div ng-repeat="value in registree.shown | filter:'' | startFrom:currentPage*pageSize | limitTo:pageSize" class="list">
 			<div ng-click="detail = !detail">
 				<span>{{value.name}} - </span>
 				<span>{{value.ktp}} - </span>
@@ -64,6 +70,13 @@
 				</div>
 			</div>
 		</div>
+		<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+	        Previous
+	    </button>
+	    {{currentPage+1}}/{{numberOfPages()}}
+	    <button ng-disabled="currentPage > numberOfPages() - 2" ng-click="currentPage=currentPage+1">
+	        Next
+	    </button>
 	</div>
 	</div>
 </div>

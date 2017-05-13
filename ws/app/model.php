@@ -101,7 +101,7 @@ class Model {
         $max_date = $request->max_date;
         $toggle = $request->toggle;
         $sql = "UPDATE career_config 
-                SET text=$text, min_date='$min_date',
+                SET text='$text', min_date='$min_date',
                     max_date='$max_date', toggle='$toggle'
                 WHERE idx=0";
         $q = mysqli_query($this->conn, $sql);
