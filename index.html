@@ -47,7 +47,7 @@
 				beforeSubmit: function () {
 					console.log('before');
 				},
-				target: '#info',
+				target: '#success',
 				success: function () {
 					$("#upload")[0].reset();
 				}
@@ -64,6 +64,7 @@
 	</div>
 	<div class="panel panel-default">
 		<div id="info" style="padding: 10px;"></div>
+		<div id="success" style="display:none;"></div>
 	</div>
 	<div id="log"></div>
 	<div class="row">

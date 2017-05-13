@@ -39,7 +39,8 @@
 	<div class="section">
 		<div class="section-title"><i class="fa fa-user"></i> Registree</div>
 		<div>
-			<select ng-model="filterRegistree.id" ng-change="orderRegistree(filterRegistree.id)">
+			<label>Filter By Job</label>
+			<select class="form-control" ng-model="filterRegistree.id" ng-change="orderRegistree(filterRegistree.id)" style="width: 200px; display: inline-block;">
 				<option value="">ALL</option>
 				<option ng-repeat="job in job.new" value="{{job.job_name}}">{{job.job_name}}</option>
 			</select>
@@ -71,13 +72,16 @@
 				</table>
 			</div>
 		</div>
-		<button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+		<br />
+		<div style="float:right;">
+		<button class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
 	        Previous
 	    </button>
 	    {{currentPage+1}}/{{numberOfPages()}}
-	    <button ng-disabled="currentPage > numberOfPages() - 2" ng-click="currentPage=currentPage+1">
+	    <button class="btn btn-default" ng-disabled="currentPage > numberOfPages() - 2" ng-click="currentPage=currentPage+1">
 	        Next
 	    </button>
+		</div>
 	</div>
 	</div>
 </div>

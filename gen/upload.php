@@ -14,10 +14,10 @@ $job = $_POST['job'];
 $path = '../adm/content/';
 $tmp = $ktp . "." . $ext;
 if ($_FILES['file']['size'] > 1024000) {
-	echo "File melebihi kapasitas yang ditentukan";
+	echo '<script type="text/javascript">alert("File melebihi kapasitas yang ditentukan!");</script>';
 } else {
 	if ($ext != "pdf") {
-		echo "File harus pdf";
+		echo '<script type="text/javascript">alert("File harus PDF!");</script>';
 	} else {
 		if (move_uploaded_file($_FILES['file']['tmp_name'], $path.basename($tmp))) {
 			// echo "<div>Uploaded $data</div>";
