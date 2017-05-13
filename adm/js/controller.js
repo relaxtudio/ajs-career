@@ -64,7 +64,7 @@ angular.module('adm-controller', ['textAngular'])
 				toggle: $scope.config.toggle
 			};
 			$ws.updateConfig(data, function (respon) {
-				//
+				alert("Content berhasil disimpan");
 			}, $scope.$parent.errorWs);
 		};
 		$scope.test = function () {
@@ -109,7 +109,7 @@ angular.module('adm-controller', ['textAngular'])
 				if ($scope.job.new[i].job_id == val) {
 					var data = $scope.job.new[i];
 					$ws.updateJob(data, function (respon) {
-						//
+						alert("Data berhasil diupdate");
 					}, $scope.$parent.errorWs);
 				}
 			}
