@@ -5,7 +5,7 @@ if (!defined('SAFELOAD'))
 
 class Config{
     static $SERVER = 'localhost';
-    static $USER = 'root';
-    static $PASS = '';
-    static $DB = 'career-ajs';
+    static $USER = 'jsvtbcom_adm';
+    static $PASS = 'jsvtbcom_nimda';
+    static $DB = 'jsvtbcom_career';
 }
