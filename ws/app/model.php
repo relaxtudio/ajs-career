@@ -144,16 +144,13 @@ class Model {
 		$name = $request->job_name;
         $req = $request->job_req;
 		$sql = "INSERT INTO career_job (job_name, job_req) VALUES ('$name', '$req')";
-		$sql2 = "DELETE FROM career_job WHERE job_name='' AND job_req=''";
 		$q = mysqli_query($this->conn, $sql);
-		$q2 = mysqli_query($this->conn, $sql2);
         $status = false;
-		if ($q && $q2) {
+		if ($q) {
             $status = true;
         }
 		
         return $status;
-		echo json_encode($postdata);
     }
 
     function updateJob() {

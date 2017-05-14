@@ -103,9 +103,8 @@ angular.module('adm-controller', ['textAngular'])
 				$scope.job.new = respon.data[0].getJob;
 			}, $scope.$parent.errorWs);
 		};
-		$scope.addJob = function () {
-			$ws.addJob($scope.newJob, function (respon) {
-				console.log(respon);
+		$scope.addJob = function (val) {
+			$ws.addJob(val, function (respon) {
 				$scope.initWs();
 				$scope.showJob = true;
 				alert("Job berhasil disimpan");
@@ -132,7 +131,6 @@ angular.module('adm-controller', ['textAngular'])
 		$scope.getRegistree = function () {
 			$ws.getRegistree(function (respon) {
 				$scope.registree.data = respon.data[0].getRegistree;
-				console.log($scope.registree.data)
 				$scope.orderRegistree();
 			}, $scope.$parent.errorWs);
 		};
